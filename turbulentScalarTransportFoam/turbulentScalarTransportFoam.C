@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    scalarTransportFoam
+    turbulentScalarTransportFoam
 
 Description
     Solves a transport equation for a passive scalar
