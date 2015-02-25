@@ -80,8 +80,8 @@
             "DTt",
             runTime.timeName(),
             mesh,
-            IOobject::MUST_READ,
-            IOobject::AUTO_WRITE
+            IOobject::NO_READ,
+            IOobject::NO_WRITE
         ),
         nut/Sct + DT,
         nut.boundaryField().types()
