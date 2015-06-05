@@ -6,7 +6,7 @@
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
-    This file is part of OpenFOAM.
+    This file is based on OpenFOAM.
 
     OpenFOAM is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by
@@ -25,7 +25,9 @@ Application
     turbulentScalarTransportFoam
 
 Description
-    Solves a transport equation for a passive scalar
+    Solves a transport equation for a passive scalar with diffusivity as a sum
+    molecular of turbulent part. Turbulent part is calculated from turbulent
+    viscosity and turbulent Schmidt number.
 
 \*---------------------------------------------------------------------------*/
 
