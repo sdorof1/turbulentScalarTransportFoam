@@ -32,7 +32,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-#include "fvIOoptionList.H"
+#include "fvOptions.H"
 #include "simpleControl.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -42,10 +42,11 @@ int main(int argc, char *argv[])
     #include "setRootCase.H"
     #include "createTime.H"
     #include "createMesh.H"
-    #include "createFields.H"
-    #include "createFvOptions.H"
 
     simpleControl simple(mesh);
+
+    #include "createFields.H"
+    #include "createFvOptions.H"
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
 
         while (simple.correctNonOrthogonal())
         {
-            solve
+            fvScalarMatrix TEqn
             (
                 fvm::ddt(T)
               + fvm::div(phi, T)
@@ -67,6 +68,11 @@ int main(int argc, char *argv[])
              ==
                 fvOptions(T)
             );
+
+            TEqn.relax();
+            fvOptions.constrain(TEqn);
+            TEqn.solve();
+            fvOptions.correct(T);
         }
 
         runTime.write();
